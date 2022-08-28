@@ -1,10 +1,7 @@
-![](https://img.shields.io/badge/Python-3.7.5-blue) 
-![](https://simpleicons.org/icons/heroku.svg)
-![](https://simpleicons.org/icons/postgresql.svg)
-![](https://simpleicons.org/icons/telegram.svg)
-
-<img src="https://img.shields.io/badge/made%20with-python-blue.svg" alt="made with python">
-<img src="https://img.shields.io/badge/made%20with-heroku.svg" alt="made with heroku">
+![](https://img.shields.io/badge/Python-3.7.5-green) 
+![](https://img.shields.io/badge/Telegram-xx-blue) 
+![](https://img.shields.io/badge/Heroku-zz-red) 
+![](https://img.shields.io/badge/PostgreSql-00-grey) 
 
 
 # SHEDULER
