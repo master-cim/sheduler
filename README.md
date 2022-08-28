@@ -1,7 +1,7 @@
 ![](https://img.shields.io/badge/Python-3.7.5-green) 
 ![](https://img.shields.io/badge/Telegram-xx-blue) 
 ![](https://img.shields.io/badge/Heroku-zz-red) 
-![](https://img.shields.io/badge/PostgreSql-00-grey) 
+![](https://img.shields.io/badge/PostgreSql-00-gray) 
 
 
 # SHEDULER
