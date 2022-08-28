@@ -1,7 +1,7 @@
 ![](https://img.shields.io/badge/Python-3.7.5-green) 
 ![](https://img.shields.io/badge/Telegram-xx-blue) 
 ![](https://img.shields.io/badge/Heroku-zz-red) 
-![](https://img.shields.io/badge/PostgreSql-00-gray) 
+![](https://img.shields.io/badge/PostgreSql-2.9.3-yellow) 
 
 
 # SHEDULER
@@ -13,7 +13,7 @@ _Версия для облачного сервиса Heroku и БД PostgreSQA
 Клонировать репозиторий, создать и активировать виртуальное окружение:
 
 ```sh
-git clone https://github.com/Amaterasq/api_yamdb.git
+git clone https://github.com/master-cim/sheduler.git
 cd sheduler
 python -m venv venv
 source venv/Scripts/activate
