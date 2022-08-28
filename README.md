@@ -5,8 +5,8 @@
 
 
 # SHEDULER
-Бот-ассистент - проект Telegram-бота, который будет обращаться к  БД PostgreSQL и узнавать расписание для 1 и 2 курса  
-_Версия для облачного сервиса Heroku и БД PostgreSQAPIL_
+Telegram Бот-ассистент, который будет обращаться к  БД PostgreSQL и узнавать расписание для 1 и 2 курса  
+_Версия для облачного сервиса Heroku и БД PostgreSQL_
 
 ## :pencil2: Инструкции по запуску
 
@@ -23,3 +23,5 @@ source venv/Scripts/activate
 ```
 pip install -r requirements.txt
 ```
+
+Бот в одном файле sheduler_bot.py
