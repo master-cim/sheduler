@@ -1,7 +1,7 @@
 ![](https://img.shields.io/badge/Python-3.7.5-blue) 
 ![](https://img.shields.io/badge/PostgreSql-postgresql.svg-blue)
 ![](https://img.shields.io/badge/Telegram-telegram.svg-blue)
-[![DenverCoder1's github streak](https://github-readme-streak-stats.herokuapp.com/?user=master@sevsu.energynet.ru&theme=blue-green)](https://github.com/DenverCoder1/github-readme-streak-stats)
+[![DenverCoder1's github streak](https://github-readme-streak-stats.herokuapp.com/?user=Naereen&theme=blue-green)](https://github.com/DenverCoder1/github-readme-streak-stats)github-readme-streak-stats)
 
 # SHEDULER
 Бот-ассистент - проект Telegram-бота, который будет обращаться к  БД PostgreSQL и узнавать расписание для 1 и 2 курса  
