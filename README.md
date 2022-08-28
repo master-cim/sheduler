@@ -1,7 +1,7 @@
 ![](https://img.shields.io/badge/Python-3.7.5-blue) 
-![](https://simpleicons.org/icons/heroku.svg)
-![](https://simpleicons.org/icons/postgresql.svg)
-![](https://simpleicons.org/icons/telegram.svg)
+![](https://img.shields.io/badge/heroku.svg)
+![](https://img.shields.io/badge/postgresql.svg)
+![](https://img.shields.io/badge/telegram.svg)
 
 
 # SHEDULER
