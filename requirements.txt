@@ -12,3 +12,7 @@ multidict==6.0.2
 psycopg2==2.9.3
 pytz==2022.1
 yarl==1.7.2
+random2==1.0.1
+nltk
+scikit-learn==1.1.2
+sklearn
