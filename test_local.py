@@ -26,6 +26,7 @@ import json
 import string
 import time
 # import locale
+from second import sec
 
 
 # locale.setlocale(locale.LC_ALL, ('ru_RU', 'UTF-8'))
@@ -45,6 +46,9 @@ dp = Dispatcher(bot, storage=storage)
 TODAY = datetime.date.today()
 start_kb1 = ReplyKeyboardMarkup(resize_keyboard=True,)
 start_kb1.row('Календарь')
+
+# start_kb2 = ReplyKeyboardMarkup(resize_keyboard=True,)
+# start_kb2.row('Календарь')
 
 # Шаг 1: собираем данные, на которых будет учиться модель
 # data = json.load(open('intents_dataset.json'))
@@ -168,17 +172,27 @@ async def bot_message_in_chat(message: types.Message):
 
 
 # Запрос клавиатуры расписания Первый курс
-@dp.message_handler(lambda message: 'Первый курс' in message.text)
-async def shedule_one(message: types.Message):
-    await bot.send_message(message.from_user.id, 'Выбери день',
+@bot.message_handler(content_types=["text"])  # Получение сообщений от юзера
+async def handle_text(message):
+    global answer  # костыль - делаем переменную глобальной, а то периодчески вылетает с ошибкой
+    if message.text.strip() == 'Первый курс':  # Если юзер нажал на кнопку, выдаем ему расписание
+        await bot.send_message(message.from_user.id, 'Выбери день в календаре',
                            reply_markup=start_kb1)
+    elif message.text.strip() == 'Второй курс':  # Если юзер нажал на кнопку, выдаем ему расписание
+        await second.sec(message)
+        bot.send_message(message.from_user.id, 'Выбери день в календаре',
+                           reply_markup=start_kb2)
+# @dp.message_handler(lambda message: 'Первый курс' in message.text)
+# async def shedule_one(message: types.Message):
+#     await bot.send_message(message.from_user.id, 'Выбери день в календаре',
+#                            reply_markup=start_kb1)
 
 
 # Запрос клавиатуры расписания Второй курс
 @dp.message_handler(lambda message: 'Второй курс' in message.text)
 async def shedule_second(message: types.Message):
     await bot.send_message(message.from_user.id, 'Выбери день',
-                           reply_markup=kb_client2)
+                           reply_markup=start_kb2)
 
 @dp.message_handler(Text(equals=['Календарь'], ignore_case=True))
 async def first_cal_handler(message: Message):
@@ -240,38 +254,57 @@ async def process_first_calendar(callback_query: CallbackQuery, callback_data: d
 #                 f'<b>{ret[1]}</b>\n{ret[2]}\n<i>Начало в:</i> {ret[3]}')
 
 
-# Запрос расписания Второй курс на сегодня
-@dp.message_handler(lambda message: 'Сегодня_' in message.text)
-async def edu_calendar2(message: types.Message):
-    await message.delete()
-    day_class = time.strftime('%d.%m')
-    await bot.send_message(message.from_user.id,
-                           f'<b>Сегодня {day_class}:</b>')
-    sql_name = 'SELECT * FROM action_today_scond ORDER BY time_start'
-    cur.execute(sql_name)
-    list_names = cur.fetchall()
-    await bot.send_message(message.from_user.id, "<b>РАСПИСАНИЕ</b>:")
-    for ret in list_names:
-        await bot.send_message(
-                message.from_user.id,
-                f'<b>{ret[1]}</b>\n{ret[2]}\n<i>Начало в:</i> {ret[3]}')
+# # Запрос расписания Второй курс на сегодня
+# @dp.message_handler(lambda message: 'Сегодня_' in message.text)
+# async def edu_calendar2(message: types.Message):
+#     await message.delete()
+#     day_class = time.strftime('%d.%m')
+#     await bot.send_message(message.from_user.id,
+#                            f'<b>Сегодня {day_class}:</b>')
+#     sql_name = 'SELECT * FROM action_today_scond ORDER BY time_start'
+#     cur.execute(sql_name)
+#     list_names = cur.fetchall()
+#     await bot.send_message(message.from_user.id, "<b>РАСПИСАНИЕ</b>:")
+#     for ret in list_names:
+#         await bot.send_message(
+#                 message.from_user.id,
+#                 f'<b>{ret[1]}</b>\n{ret[2]}\n<i>Начало в:</i> {ret[3]}')
 
 
-# Запрос расписания Второй курс на завтра
-@dp.message_handler(lambda message: 'Завтра_' in message.text)
-async def edu_calendar_tomrr2(message: types.Message):
-    await message.delete()
-    tomorrow = TODAY + datetime.timedelta(days=1)
-    tmrr = tomorrow.strftime('%d.%m')
-    await bot.send_message(message.from_user.id,
-                           f'<b>Завтра {tmrr}:</b>')
-    sql_name = 'SELECT * FROM public.action_tmrrw_scond ORDER BY time_start'
-    cur.execute(sql_name)
-    list_names = cur.fetchall()
-    for ret in list_names:
-        await bot.send_message(
-                message.from_user.id,
-                f'<b>{ret[1]}</b>\n{ret[2]}\n<i>Начало в:</i> {ret[3]}')
+# # Запрос расписания Второй курс на завтра
+# @dp.message_handler(lambda message: 'Завтра_' in message.text)
+# async def edu_calendar_tomrr2(message: types.Message):
+#     await message.delete()
+#     tomorrow = TODAY + datetime.timedelta(days=1)
+#     tmrr = tomorrow.strftime('%d.%m')
+#     await bot.send_message(message.from_user.id,
+#                            f'<b>Завтра {tmrr}:</b>')
+#     sql_name = 'SELECT * FROM public.action_tmrrw_scond ORDER BY time_start'
+#     cur.execute(sql_name)
+#     list_names = cur.fetchall()
+#     for ret in list_names:
+#         await bot.send_message(
+#                 message.from_user.id,
+#                 f'<b>{ret[1]}</b>\n{ret[2]}\n<i>Начало в:</i> {ret[3]}')
+
+# simple calendar usage
+@dp.callback_query_handler(simple_cal_callback.filter())
+async def process_second_calendar(callback_query: CallbackQuery, callback_data: dict):
+    selected, date = await SimpleCalendar().process_selection(callback_query, callback_data)
+    if selected:
+        await callback_query.message.answer(
+            f'Вы выбрали {date.strftime("%d-%m-%Y")}',
+            reply_markup=start_kb2)
+        day_start = date.strftime("%Y-%m-%d")
+        sql_name = 'SELECT * FROM action WHERE class=2 AND day_start=%s ORDER BY time_start'
+        cur.execute(sql_name, (day_start,))
+        list_names = cur.fetchall()
+        await callback_query.message.answer("<b>РАСПИСАНИЕ:</b>",
+                            parse_mode="HTML")
+        for ret in list_names:
+            await callback_query.message.answer(
+                    f'<b>{ret[1]}</b>\n{ret[2]}\n<i>Начало в:</i> {ret[3]}')
+
 
 
 @dp.message_handler(lambda message: 'фотобота' in message.text)
@@ -452,14 +485,14 @@ async def empty(message: types.Message):
 # btn_today1 = KeyboardButton('_Сегодня')
 # btn_tmrrw1 = KeyboardButton('Zавтра')
 
-btn_today2 = KeyboardButton('Сегодня_')
-btn_tmrrw2 = KeyboardButton('Завтра_')
+# btn_today2 = KeyboardButton('Сегодня_')
+# btn_tmrrw2 = KeyboardButton('Завтра_')
 
 # kb_client1 = ReplyKeyboardMarkup(resize_keyboard=True)
 # kb_client1.row(btn_today1, btn_tmrrw1)
 
-kb_client2 = ReplyKeyboardMarkup(resize_keyboard=True)
-kb_client2.row(btn_today2, btn_tmrrw2)
+# kb_client2 = ReplyKeyboardMarkup(resize_keyboard=True)
+# kb_client2.row(btn_today2, btn_tmrrw2)
 
 btn_class_f = KeyboardButton('Первый курс')
 btn_class_s = KeyboardButton('Второй курс')
