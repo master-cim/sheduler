@@ -18,7 +18,7 @@ cd sheduler
 python -m venv venv
 source venv/Scripts/activate
 ```
-pip3 freeze > requirements.txt
+
 Установить зависимости из файла requirements.txt:
 ```
 pip install -r requirements.txt
